@@ -9,17 +9,17 @@ import skilltracker.fse.dto.EngineerSkillProfile;
 @Service
 public class SkillsService {
 	
-	@Autowired(required=false)
+	@Autowired(required=true)
 	private SkillsRepository skillsRepository;
 	
 	public void fetchProfile(String id) {
 	}
 
 	public void addProfile(EngineerSkillProfile newProfile) {
-		//this.skillsDao.addProfile(newProfile);
+		//this.skillsRepository.addProfile(newProfile);
 	}
 	
 	public void updateProfile(EngineerSkillProfile updatedProfile) {
-		//this.skillsDao.updateProfile(updatedProfile);
+		//this.skillsRepository.updateProfile(updatedProfile);
 	}
 }
