@@ -9,7 +9,8 @@ import skilltracker.fse.dto.EngineerSkillProfile;
 @Service
 public class SkillsService {
 	
-	@Autowired(required=true)
+	//false until we create AWS DB
+	@Autowired(required=false)
 	private SkillsRepository skillsRepository;
 	
 	public void fetchProfile(String id) {
