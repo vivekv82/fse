@@ -3,14 +3,14 @@ package skilltracker.fse.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import skilltracker.fse.dao.SkillsDAO;
+import skilltracker.fse.dao.SkillsRepository;
 import skilltracker.fse.dto.EngineerSkillProfile;
 
 @Service
 public class SkillsService {
 	
 	@Autowired(required=false)
-	private SkillsDAO skillsDao;
+	private SkillsRepository skillsRepository;
 	
 	public void fetchProfile(String id) {
 	}

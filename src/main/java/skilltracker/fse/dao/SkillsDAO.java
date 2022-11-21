@@ -2,7 +2,7 @@ package skilltracker.fse.dao;
 
 import skilltracker.fse.dto.EngineerSkillProfile;
 
-public class SkillsDAO {
+public class SkillsRepository {
 	
 	public void fetchProfile(String id) {
 	}
