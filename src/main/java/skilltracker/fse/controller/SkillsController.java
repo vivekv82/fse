@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import skilltracker.fse.dto.EngineerSkillProfile;
 import skilltracker.fse.dto.Result;
 import skilltracker.fse.service.SkillsService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/engineer")
 public class SkillsController {

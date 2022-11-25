@@ -1,25 +1,28 @@
 package skilltracker.fse.entity;
 
 import java.util.List;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Entity
-//@Table("SkillProfileDetails")
-public class SkillProfile  {
+@Entity
+@Table(name = "SkillProfileDetails")
+public class SkillProfile {
 
-	
 	private String firstName;
 
 	private String lastName;
 
-	//@Id
-    //@GeneratedValue
-	//Primary Key
+	@Id
+	@GeneratedValue
+	// Primary Key
 	private String associateId;
 
 	private String mobile;
-	
+
 	private String email;
-	
+
 	private List<Expertise> skillsList;
 
 	public String getFirstName() {
