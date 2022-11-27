@@ -1,18 +1,17 @@
 package skilltracker.fse.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ExpertiseDetails")
+//@Document(collection = "Expertise")
 public class Expertise {
-
-	// Foreign Key
-	private String associateId;
 
 	private String skillName;
 
 	private Integer skillExpertiseLevel;
+	
+	public Expertise(String skillName, Integer skillExpertiseLevel) {
+		this.skillName = skillName;
+		this.skillExpertiseLevel = skillExpertiseLevel;
+	}
+
 
 	public String getSkillName() {
 		return skillName;
@@ -20,14 +19,6 @@ public class Expertise {
 
 	public void setSkillName(String skillName) {
 		this.skillName = skillName;
-	}
-
-	public String getAssociateId() {
-		return associateId;
-	}
-
-	public void setAssociateId(String associateId) {
-		this.associateId = associateId;
 	}
 
 	public Integer getSkillExpertiseLevel() {

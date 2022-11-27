@@ -1,13 +1,14 @@
 package skilltracker.fse.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
-@Table(name = "SkillProfileDetails")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import skilltracker.fse.dto.SkillsExpertise;
+
+@Document(collection = "Skillprofile")
 public class SkillProfile {
 
 	private String firstName;
@@ -15,8 +16,6 @@ public class SkillProfile {
 	private String lastName;
 
 	@Id
-	@GeneratedValue
-	// Primary Key
 	private String associateId;
 
 	private String mobile;
@@ -24,6 +23,31 @@ public class SkillProfile {
 	private String email;
 
 	private List<Expertise> skillsList;
+	
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> list) {
+		this.associateId = associateId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobile = mobile;
+		this.skillsList = getExpertiseList(list);
+	}
+	
+	public SkillProfile() {
+	}
+
+	private List<Expertise> getExpertiseList(List<SkillsExpertise> list) {
+		List<Expertise> expertiseList = new ArrayList<Expertise>();
+		list.forEach(skillsExpertise -> {
+			expertiseList.add(getExpertise(skillsExpertise));
+		});
+		return expertiseList;
+	}
+	
+	private Expertise getExpertise(SkillsExpertise skillsExpertise) {
+		Expertise expertise = new Expertise(skillsExpertise.getSkillName(), skillsExpertise.getSkillExpertiseLevel());
+		return expertise;
+	}
 
 	public String getFirstName() {
 		return firstName;

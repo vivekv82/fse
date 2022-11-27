@@ -2,16 +2,15 @@ package skilltracker.fse.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Email;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Builder;
 
-//@Builder
-//@Data
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SkillsExpertise implements Serializable {
 
 	private static final long serialVersionUID = -1264756693651108391L;

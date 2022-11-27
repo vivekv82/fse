@@ -6,6 +6,10 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Email;
 
@@ -32,6 +36,7 @@ public class EngineerSkillProfile implements Serializable {
 	@NotNull
 	@Size(min = 5, max = 30)
 	@Pattern(regexp = "^CTS[0-9]*")
+	@Id
 	private String associateId;
 
 	@NotNull

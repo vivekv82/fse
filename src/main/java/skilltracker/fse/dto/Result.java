@@ -10,10 +10,23 @@ import lombok.experimental.Builder;
 public class Result implements Serializable {
 	
 	private static final long serialVersionUID = -2211832491775352290L;
-	private String result;
-	private String errorMessage;
-	private String errorCode;
+	private String result = "0";
+	private String errorMessage = "";
+	private String errorCode = "";
+	private Object[] resposnse;
 
+	public Object[] getResposnse() {
+		return resposnse;
+	}
+	public void setResposnse(Object[] resposnse) {
+		this.resposnse = resposnse;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public Result(Object[] resposnse) {
+		this.resposnse = resposnse;
+	}
 	public Result(String result, String errorMessage, String errorCode) {
 		this.result = result;
 		this.errorMessage = errorMessage;

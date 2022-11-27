@@ -1,0 +1,8 @@
+skilltracker/fse/AppConfig.class
+skilltracker/fse/SkillsTrackerApp.class
+skilltracker/fse/dto/SkillsExpertise.class
+skilltracker/fse/entity/Expertise.class
+skilltracker/fse/entity/SkillProfile.class
+skilltracker/fse/dto/EngineerSkillProfile$EngineerSkillProfileBuilder.class
+skilltracker/fse/dto/Result$ResultBuilder.class
+skilltracker/fse/dto/Result.class
