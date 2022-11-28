@@ -63,7 +63,7 @@ public class SkillsController {
 			"content-type=application/json" }, consumes = {
 					MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Result updateProfile(@RequestBody @Valid EngineerSkillProfile updatedProfile) {
-		this.skillsService.updateProfile(updatedProfile);
+		this.skillsService.updateProfile(updatedProfile.getAssociateId(), updatedProfile);
 		return new Result("0", "", "");
 	}
 

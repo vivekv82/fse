@@ -32,6 +32,13 @@ public class Result implements Serializable {
 		this.errorMessage = errorMessage;
 		this.errorCode = errorCode;
 	}
+	
+	public Result(String result, String errorMessage, String errorCode, Object[] resposnse) {
+		this.result = result;
+		this.errorMessage = errorMessage;
+		this.errorCode = errorCode;
+		this.resposnse = resposnse;
+	}
 
 	public String getResult() {
 		return result;
