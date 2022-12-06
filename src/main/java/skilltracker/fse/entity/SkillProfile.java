@@ -1,5 +1,6 @@
 package skilltracker.fse.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import skilltracker.fse.dto.SkillsExpertise;
 
 @Document(collection = "Skillprofile")
-public class SkillProfile {
+public class SkillProfile implements Serializable {
+
+	private static final long serialVersionUID = 6220741624813720241L;
 
 	private String firstName;
 

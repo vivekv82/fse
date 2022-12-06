@@ -10,3 +10,5 @@ skilltracker/fse/dto/EngineerSkillProfile.class
 skilltracker/fse/dto/EngineerSkillProfile$EngineerSkillProfileBuilder.class
 skilltracker/fse/dto/SkillsExpertise$SkillsExpertiseBuilder.class
 skilltracker/fse/dto/Result$ResultBuilder.class
+skilltracker/fse/controller/SkillsController.class
+skilltracker/fse/dto/Result.class

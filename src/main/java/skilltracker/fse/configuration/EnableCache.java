@@ -13,8 +13,8 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-//@Configuration
-//@EnableCaching
+@Configuration
+@EnableCaching
 public class EnableCache {
 
 	@Value("${redis.hostname}")
@@ -28,6 +28,7 @@ public class EnableCache {
 
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() {
+		System.out.println("redisHostName, redisPort, redisPrefix = " + redisHostName + " " + redisPort + " " + redisPrefix);
 		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redisHostName,
 				redisPort);
 		return new JedisConnectionFactory(redisStandaloneConfiguration);

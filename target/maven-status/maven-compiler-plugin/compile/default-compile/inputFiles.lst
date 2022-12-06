@@ -2,7 +2,6 @@
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/entity/SkillProfile.java
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/SkillsTrackerApp.java
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/dto/Result.java
-/Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/SkillTrackerAWSHandler.java
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/dto/EngineerSkillProfile.java
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/dao/SkillsRepository.java
 /Users/baskaran/Desktop/FSE5/Microservices/fse/src/main/java/skilltracker/fse/service/SkillsService.java

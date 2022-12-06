@@ -1,7 +1,11 @@
 package skilltracker.fse.entity;
 
+import java.io.Serializable;
+
 //@Document(collection = "Expertise")
-public class Expertise {
+public class Expertise implements Serializable {
+
+	private static final long serialVersionUID = -7040580109598294801L;
 
 	private String skillName;
 
