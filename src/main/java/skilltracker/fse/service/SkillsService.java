@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import skilltracker.fse.dao.SkillsRepository;
@@ -19,6 +21,12 @@ public class SkillsService {
 
 	@Autowired
 	private SkillsRepository skillsRepository;
+	
+	@Autowired
+    private JmsTemplate jmsTemplate;
+ 
+    @Value("${skill.queue}" )
+    private String skillQueue;
 
 	@Cacheable
 	public List<SkillProfile> fetchProfile(String associateId) {
@@ -31,7 +39,8 @@ public class SkillsService {
 	}
 
 	public void addProfile(EngineerSkillProfile newProfile) {
-		this.skillsRepository.addProfile(newProfile);
+		System.out.println("userQueue and newProfile = " + skillQueue + newProfile.toString());
+		jmsTemplate.convertAndSend(skillQueue, newProfile);
 	}
 	 
 	@CachePut(key = "#associateId")

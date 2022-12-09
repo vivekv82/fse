@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Email;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -98,6 +96,10 @@ public class EngineerSkillProfile implements Serializable {
 
 	public void setSkillsList(List<SkillsExpertise> skillsList) {
 		this.skillsList = skillsList;
+	}
+	
+	public String toString() {
+		return this.associateId;
 	}
 
 }
