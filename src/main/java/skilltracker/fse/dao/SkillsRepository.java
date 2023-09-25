@@ -46,7 +46,7 @@ public interface SkillsRepository extends MongoRepository<SkillProfile, String> 
 
 	static SkillProfile getEntityFor(EngineerSkillProfile profile) {
 		SkillProfile skillProfile = new SkillProfile(profile.getFirstName(), profile.getLastName(),
-				profile.getAssociateId(), profile.getEmail(), profile.getMobile(), profile.getSkillsList());
+				profile.getAssociateId(), profile.getEmail(), profile.getMobile(), profile.getTechnicalSkillsList(), profile.getSoftSkillsList());
 		return skillProfile;
 	}
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -25,15 +28,18 @@ public class SkillProfile implements Serializable {
 
 	private String email;
 
-	private List<Expertise> skillsList;
+    private List<Expertise> technicalSkillsList;
 	
-	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> list) {
+	private List<Expertise> softSkillsList;
+	
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList) {
 		this.associateId = associateId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.mobile = mobile;
-		this.skillsList = getExpertiseList(list);
+		this.technicalSkillsList = getExpertiseList(technicalSkillsList);
+		this.softSkillsList = getExpertiseList(softSkillsList);
 	}
 	
 	public SkillProfile() {
@@ -92,12 +98,20 @@ public class SkillProfile implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public List<Expertise> getSkillsList() {
-		return skillsList;
+	public List<Expertise> getTechnicalSkillsList() {
+		return technicalSkillsList;
 	}
 
-	public void setSkillsList(List<Expertise> skillsList) {
-		this.skillsList = skillsList;
+	public void setTechnicalSkillsList(List<Expertise> technicalSkillsList) {
+		this.technicalSkillsList = technicalSkillsList;
+	}
+
+	public List<Expertise> getSoftSkillsList() {
+		return softSkillsList;
+	}
+
+	public void setSoftSkillsList(List<Expertise> softSkillsList) {
+		this.softSkillsList = softSkillsList;
 	}
 
 }

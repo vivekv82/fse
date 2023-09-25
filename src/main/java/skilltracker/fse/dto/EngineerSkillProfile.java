@@ -48,7 +48,11 @@ public class EngineerSkillProfile implements Serializable {
 	
 	@NotNull
 	@Valid
-	private List<SkillsExpertise> skillsList;
+	private List<SkillsExpertise> technicalSkillsList;
+	
+	@NotNull
+	@Valid
+	private List<SkillsExpertise> softSkillsList;
 
 	public String getFirstName() {
 		return firstName;
@@ -89,15 +93,23 @@ public class EngineerSkillProfile implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public List<SkillsExpertise> getSkillsList() {
-		return skillsList;
-	}
-
-	public void setSkillsList(List<SkillsExpertise> skillsList) {
-		this.skillsList = skillsList;
-	}
 	
+	public List<SkillsExpertise> getTechnicalSkillsList() {
+		return technicalSkillsList;
+	}
+
+	public void setTechnicalSkillsList(List<SkillsExpertise> technicalSkillsList) {
+		this.technicalSkillsList = technicalSkillsList;
+	}
+
+	public List<SkillsExpertise> getSoftSkillsList() {
+		return softSkillsList;
+	}
+
+	public void setSoftSkillsList(List<SkillsExpertise> softSkillsList) {
+		this.softSkillsList = softSkillsList;
+	}
+
 	public String toString() {
 		return this.associateId;
 	}
