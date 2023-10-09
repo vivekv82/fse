@@ -1,6 +1,7 @@
 package skilltracker.fse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,11 +38,13 @@ public class SkillsController {
 		this.skillsService = skillsService;
 	}
 
-	@RequestMapping(value = "/fetchProfile/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	@ResponseBody
-	public Result fetchProfile(@PathVariable String id) {
-		List<SkillProfile> result = this.skillsService.fetchProfile(id);
-		return result.isEmpty() ? new Result("-1", "No results found for " + id , "") : new Result(result.toArray());
+	@RequestMapping(value = "/fetchProfile", method = RequestMethod.POST, headers = {
+	"content-type=application/json" }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+	public Result fetchProfile(@RequestBody EngineerSkillProfile newProfile) {
+		List<SkillProfile> result = this.skillsService.fetchProfile(newProfile);
+		return result.isEmpty() ? new Result("-1", "No results found for ", "") : new Result(result.toArray());
 	}
 	
 	@GetMapping("/fetchAll")

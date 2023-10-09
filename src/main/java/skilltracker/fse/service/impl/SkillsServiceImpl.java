@@ -30,8 +30,8 @@ public class SkillsServiceImpl implements SkillsService {
     private String skillQueue;
 
 	@Cacheable
-	public List<SkillProfile> fetchProfile(String associateId) {
-		SkillProfile skillProfile = this.skillsRepository.fetchProfile(associateId);
+	public List<SkillProfile> fetchProfile(EngineerSkillProfile newProfile) {
+		SkillProfile skillProfile = this.skillsRepository.fetchProfile(newProfile);
 		return skillProfile == null ? new ArrayList<SkillProfile>() : this.processOutput(skillProfile);
 	}
 	
@@ -56,4 +56,5 @@ public class SkillsServiceImpl implements SkillsService {
 	    return result;
 		
 	}
+
 }

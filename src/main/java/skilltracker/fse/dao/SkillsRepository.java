@@ -7,13 +7,15 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import skilltracker.fse.dto.EngineerSkillProfile;
 import skilltracker.fse.entity.SkillProfile;
+import org.springframework.data.domain.Example;
 
 public interface SkillsRepository extends MongoRepository<SkillProfile, String> {
 
-	public default SkillProfile fetchProfile(String associateID) {
-		Optional<SkillProfile> skillProfile = findById(associateID);
-		System.out.println("Find : " + skillProfile.isPresent());
-		return skillProfile.isPresent() ? skillProfile.get(): null;
+	public default List<SkillProfile> fetchProfile(EngineerSkillProfile searchProfile) {
+		Example searchProfileExample = Example.of(SkillsRepository.getEntityFor(searchProfile));
+		List<SkillProfile> results = (List<SkillProfile>) findAll(searchProfileExample);
+		System.out.println("Find : " + results.size());
+		return results;
 	}
 	
 	public default SkillProfile fetchProfile(SkillProfile skillProfile) {

@@ -8,7 +8,7 @@ import skilltracker.fse.entity.SkillProfile;
 public interface SkillsService {
 
 	
-	public List<SkillProfile> fetchProfile(String associateId);
+	public List<SkillProfile> fetchProfile(EngineerSkillProfile newProfile);
 	
 	public List<SkillProfile> fetchAllProfiles();
 
