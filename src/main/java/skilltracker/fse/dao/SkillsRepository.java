@@ -1,7 +1,6 @@
 package skilltracker.fse.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -12,8 +11,7 @@ import org.springframework.data.domain.Example;
 public interface SkillsRepository extends MongoRepository<SkillProfile, String> {
 
 	public default List<SkillProfile> fetchProfile(EngineerSkillProfile searchProfile) {
-		Example searchProfileExample = Example.of(SkillsRepository.getEntityFor(searchProfile));
-		List<SkillProfile> results = (List<SkillProfile>) findAll(searchProfileExample);
+		List<SkillProfile> results = (List<SkillProfile>) findAll(Example.of(SkillsRepository.getEntityFor(searchProfile)));
 		System.out.println("Find : " + results.size());
 		return results;
 	}
