@@ -6,19 +6,18 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import skilltracker.fse.dto.EngineerSkillProfile;
 import skilltracker.fse.entity.SkillProfile;
-import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.repository.Query;
 
 public interface SkillsRepository extends MongoRepository<SkillProfile, String> {
+	
 
-	public default List<SkillProfile> fetchProfile(EngineerSkillProfile searchProfile) {
-		List<SkillProfile> results = (List<SkillProfile>) findAll(Example.of(SkillsRepository.getEntityFor(searchProfile)));
-		System.out.println("Find : " + results.size());
-		return results;
-	}
+	@Query("{ 'firstName': {$regex : /?0/i}, 'lastName': {$regex : /?1/i}, $or: [  { 'technicalSkillsList': { $elemMatch: { 'skillName': ?2, 'skillExpertiseLevel' : { $gte: 10 } } } }, { 'softSkillsList': { $elemMatch: { 'skillName': ?3, 'skillExpertiseLevel' : { $gte: 10 } } } } ] }")
+    public List<SkillProfile> fetchProfile(String firstName, String lastName, String technicalSkillName, String softSkillName);
+	
+	@Query("{ 'firstName': {$regex : /?0/i}, 'lastName': {$regex : /?1/i}, '_id': ?2, $or: [ { 'technicalSkillsList': { $elemMatch: { 'skillName': ?3, 'skillExpertiseLevel' : { $gte: 10 } } } }, { 'softSkillsList': { $elemMatch: { 'skillName': ?4, 'skillExpertiseLevel' : { $gte: 10 } } } } ] }")
+    public List<SkillProfile> fetchProfileWithId(String firstName, String lastName, String associateId, String technicalSkillName, String softSkillName);
 	
 	public default SkillProfile fetchProfile(SkillProfile skillProfile) {
-		String associateId = skillProfile.getAssociateId();
-		findById(associateId).get();
 		return findById(skillProfile.getAssociateId()).get();
 	}
 	

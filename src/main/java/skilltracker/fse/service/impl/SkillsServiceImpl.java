@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import skilltracker.fse.dao.SkillsRepository;
 import skilltracker.fse.dto.EngineerSkillProfile;
+import skilltracker.fse.dto.SearchSkillProfile;
 import skilltracker.fse.entity.SkillProfile;
 import skilltracker.fse.service.SkillsService;
 
@@ -22,19 +23,40 @@ public class SkillsServiceImpl implements SkillsService {
 
 	@Autowired
 	private SkillsRepository skillsRepository;
-	
+
 	@Autowired
-    private JmsTemplate jmsTemplate;
- 
-    @Value("${skill.queue}" )
-    private String skillQueue;
+	private JmsTemplate jmsTemplate;
+
+	@Value("${skill.queue}")
+	private String skillQueue;
+
+	public List<SkillProfile> fetchProfile(SearchSkillProfile searchProfileCriteria) {
+		System.out.println("firstname " + searchProfileCriteria.getFirstName());
+		System.out.println("lastname " + searchProfileCriteria.getLastName());
+		System.out.println("associateid " + searchProfileCriteria.getAssociateId());
+		System.out.println("techskillname " + searchProfileCriteria.getTechnicalSkillName());
+		System.out.println("softskillname " + searchProfileCriteria.getSoftSkillName());
+
+		System.out.println("Calling fetchProfile");
+		return this.skillsRepository.fetchProfile(searchProfileCriteria.getFirstName(),
+				searchProfileCriteria.getLastName(), searchProfileCriteria.getTechnicalSkillName(),
+				searchProfileCriteria.getSoftSkillName());
+
+	}
 
 	@Cacheable
-	public List<SkillProfile> fetchProfile(EngineerSkillProfile newProfile) {
-		SkillProfile skillProfile = this.skillsRepository.fetchProfile(newProfile);
-		return skillProfile == null ? new ArrayList<SkillProfile>() : this.processOutput(skillProfile);
+	public List<SkillProfile> fetchProfileWithId(SearchSkillProfile searchProfileCriteria) {
+		System.out.println("firstname " + searchProfileCriteria.getFirstName());
+		System.out.println("lastname " + searchProfileCriteria.getLastName());
+		System.out.println("associateid " + searchProfileCriteria.getAssociateId());
+		System.out.println("techskillname " + searchProfileCriteria.getTechnicalSkillName());
+		System.out.println("softskillname " + searchProfileCriteria.getSoftSkillName());
+		System.out.println("Calling fetchProfileWithId");
+		return this.skillsRepository.fetchProfileWithId(searchProfileCriteria.getFirstName(),
+				searchProfileCriteria.getLastName(), searchProfileCriteria.getAssociateId(),
+				searchProfileCriteria.getTechnicalSkillName(), searchProfileCriteria.getSoftSkillName());
 	}
-	
+
 	public List<SkillProfile> fetchAllProfiles() {
 		return this.skillsRepository.fetchAllProfiles();
 	}
@@ -43,18 +65,18 @@ public class SkillsServiceImpl implements SkillsService {
 		System.out.println("userQueue and newProfile = " + skillQueue + newProfile.toString());
 		jmsTemplate.convertAndSend(skillQueue, newProfile);
 	}
-	 
+
 	@CachePut(key = "#associateId")
 	public void updateProfile(String associateId, EngineerSkillProfile updatedProfile) {
 		this.skillsRepository.updateProfile(updatedProfile);
 	}
-	
+
 	private List<SkillProfile> processOutput(SkillProfile skillProfile) {
 		List<SkillProfile> result = new ArrayList<SkillProfile>();
 		if (skillProfile != null)
-		    result.add(skillProfile);
-	    return result;
-		
+			result.add(skillProfile);
+		return result;
+
 	}
 
 }
