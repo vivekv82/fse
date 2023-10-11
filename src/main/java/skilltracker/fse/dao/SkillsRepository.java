@@ -3,10 +3,10 @@ package skilltracker.fse.dao;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import skilltracker.fse.dto.EngineerSkillProfile;
 import skilltracker.fse.entity.SkillProfile;
-import org.springframework.data.mongodb.repository.Query;
 
 public interface SkillsRepository extends MongoRepository<SkillProfile, String> {
 	
@@ -48,5 +48,5 @@ public interface SkillsRepository extends MongoRepository<SkillProfile, String> 
 				profile.getAssociateId(), profile.getEmail(), profile.getMobile(), profile.getTechnicalSkillsList(), profile.getSoftSkillsList());
 		return skillProfile;
 	}
-
+	
 }

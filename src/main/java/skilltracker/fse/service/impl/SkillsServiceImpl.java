@@ -63,11 +63,13 @@ public class SkillsServiceImpl implements SkillsService {
 
 	public void addProfile(EngineerSkillProfile newProfile) {
 		System.out.println("userQueue and newProfile = " + skillQueue + newProfile.toString());
+		newProfile.sortSkillsExpertise();
 		jmsTemplate.convertAndSend(skillQueue, newProfile);
 	}
 
 	@CachePut(key = "#associateId")
 	public void updateProfile(String associateId, EngineerSkillProfile updatedProfile) {
+		updatedProfile.sortSkillsExpertise();
 		this.skillsRepository.updateProfile(updatedProfile);
 	}
 
@@ -76,7 +78,6 @@ public class SkillsServiceImpl implements SkillsService {
 		if (skillProfile != null)
 			result.add(skillProfile);
 		return result;
-
 	}
 
 }

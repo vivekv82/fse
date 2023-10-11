@@ -1,7 +1,9 @@
 package skilltracker.fse.dto;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -112,6 +114,12 @@ public class EngineerSkillProfile implements Serializable {
 
 	public String toString() {
 		return this.associateId;
+	}
+	
+	public void sortSkillsExpertise() {
+		Comparator<SkillsExpertise> comparator = Comparator.comparing(SkillsExpertise::getSkillExpertiseLevel);
+		this.technicalSkillsList = this.technicalSkillsList.stream().sorted(comparator).collect(Collectors.toList());
+		this.softSkillsList = this.softSkillsList.stream().sorted(comparator).collect(Collectors.toList());
 	}
 
 }
