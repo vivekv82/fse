@@ -17,6 +17,8 @@ public interface SkillsService {
 
 	public void addProfile(EngineerSkillProfile newProfile);
 	
+	public SkillProfile fetchLoginProfile(String id);
+	
 	public void updateProfile(String associateId, EngineerSkillProfile updatedProfile);
 	
 }
