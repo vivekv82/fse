@@ -11,7 +11,7 @@ import skilltracker.fse.entity.SkillProfile;
 public interface SkillsRepository extends MongoRepository<SkillProfile, String> {
 	
 
-	@Query("{ 'firstName': {$regex : /?0/i}, 'lastName': {$regex : /?1/i}, $or: [  { 'technicalSkillsList': { $elemMatch: { 'skillName': ?2, 'skillExpertiseLevel' : { $gte: 10 } } } }, { 'softSkillsList': { $elemMatch: { 'skillName': ?3, 'skillExpertiseLevel' : { $gte: 10 } } } } ] }")
+	@Query("{ 'firstName': /?0/i, 'lastName': /?1/i, $or: [  { 'technicalSkillsList': { $elemMatch: { 'skillName': ?2, 'skillExpertiseLevel' : { $gte: 10 } } } }, { 'softSkillsList': { $elemMatch: { 'skillName': ?3, 'skillExpertiseLevel' : { $gte: 10 } } } } ] }")
     public List<SkillProfile> fetchProfile(String firstName, String lastName, String technicalSkillName, String softSkillName);
 	
 	@Query("{ 'firstName': {$regex : /?0/i}, 'lastName': {$regex : /?1/i}, '_id': ?2, $or: [ { 'technicalSkillsList': { $elemMatch: { 'skillName': ?3, 'skillExpertiseLevel' : { $gte: 10 } } } }, { 'softSkillsList': { $elemMatch: { 'skillName': ?4, 'skillExpertiseLevel' : { $gte: 10 } } } } ] }")
@@ -24,7 +24,7 @@ public interface SkillsRepository extends MongoRepository<SkillProfile, String> 
 	public default List<SkillProfile> fetchAllProfiles() {
 		return findAll();
 	}
-
+	
 	public default void addProfile(EngineerSkillProfile newProfile) {
 		boolean isSkillRecordPresent = isSkillRecordPresent(newProfile.getAssociateId());
 		if (!isSkillRecordPresent) {

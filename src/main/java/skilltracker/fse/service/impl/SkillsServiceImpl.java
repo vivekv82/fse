@@ -2,6 +2,7 @@ package skilltracker.fse.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -78,6 +79,12 @@ public class SkillsServiceImpl implements SkillsService {
 		if (skillProfile != null)
 			result.add(skillProfile);
 		return result;
+	}
+
+	@Override
+	public SkillProfile fetchLoginProfile(String id) {
+		Optional<SkillProfile> skillProfile = this.skillsRepository.findById(id);
+		return skillProfile.isPresent() ? skillProfile.get() : null;
 	}
 
 }

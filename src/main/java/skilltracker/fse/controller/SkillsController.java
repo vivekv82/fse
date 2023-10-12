@@ -1,5 +1,6 @@
 package skilltracker.fse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -44,6 +45,10 @@ public class SkillsController {
 		List<SkillProfile> result = searchProfile.getAssociateId().isEmpty()
 				? this.skillsService.fetchProfile(searchProfile)
 				: this.skillsService.fetchProfileWithId(searchProfile);
+		System.out.println("result" + result);
+		if (result == null) {
+			result = this.skillsService.fetchProfile(searchProfile);
+		}
 		return result.isEmpty() ? new Result(-1, "No results found for ", "") : new Result(result.toArray());
 	}
 
@@ -51,6 +56,21 @@ public class SkillsController {
 	public Result fetchAllProfiles() {
 		List<SkillProfile> allProfileRecords = this.skillsService.fetchAllProfiles();
 		return new Result(allProfileRecords.toArray());
+	}
+	
+	@RequestMapping(value = "/fetchLoginProfile", method = RequestMethod.POST, headers = {
+	"content-type=application/json" }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Result fetchLoginProfile(@RequestBody SearchSkillProfile searchProfile) {
+		SkillProfile profile = this.skillsService.fetchLoginProfile(searchProfile.getAssociateId());
+		if (profile != null) {
+			List <SkillProfile> skillprofile = new ArrayList<SkillProfile>();
+			skillprofile.add(profile);
+			return new Result(skillprofile.toArray());
+		} else {
+			return new Result(-1, "No results found for ", "");
+		}
+		
 	}
 
 	@RequestMapping(value = "/addProfile", method = RequestMethod.POST, headers = {
