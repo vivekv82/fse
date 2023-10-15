@@ -2,6 +2,7 @@ package skilltracker.fse.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -29,6 +30,8 @@ public class SkillProfile implements Serializable {
 	
 	private List<Expertise> softSkillsList;
 	
+	private Date createdDate;
+	
 	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList) {
 		this.associateId = associateId;
 		this.firstName = firstName;
@@ -37,6 +40,17 @@ public class SkillProfile implements Serializable {
 		this.mobile = mobile;
 		this.technicalSkillsList = getExpertiseList(technicalSkillsList);
 		this.softSkillsList = getExpertiseList(softSkillsList);
+	}
+	
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList, Date createdDate) {
+		this.associateId = associateId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobile = mobile;
+		this.technicalSkillsList = getExpertiseList(technicalSkillsList);
+		this.softSkillsList = getExpertiseList(softSkillsList);
+		this.createdDate = createdDate;
 	}
 	
 	public SkillProfile() {
@@ -109,6 +123,14 @@ public class SkillProfile implements Serializable {
 
 	public void setSoftSkillsList(List<Expertise> softSkillsList) {
 		this.softSkillsList = softSkillsList;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 }
