@@ -34,11 +34,5 @@ public class ActiveMQCloudConfig {
         System.out.println("Returning factory");
         return factory;
     }
-    
-//    @JmsListener(destination = "${com.example.userQueue}")
-//    public void receiveMessage(EngineerSkillProfile newProfile) throws IOException {
-//
-//    }
  
-
 }

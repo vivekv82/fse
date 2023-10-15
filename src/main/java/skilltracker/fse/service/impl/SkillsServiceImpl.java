@@ -1,6 +1,5 @@
 package skilltracker.fse.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,13 +71,6 @@ public class SkillsServiceImpl implements SkillsService {
 	public void updateProfile(String associateId, EngineerSkillProfile updatedProfile) {
 		updatedProfile.sortSkillsExpertise();
 		this.skillsRepository.updateProfile(updatedProfile);
-	}
-
-	private List<SkillProfile> processOutput(SkillProfile skillProfile) {
-		List<SkillProfile> result = new ArrayList<SkillProfile>();
-		if (skillProfile != null)
-			result.add(skillProfile);
-		return result;
 	}
 
 	@Override
