@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import skilltracker.fse.dto.SkillsExpertise;
 
-@Document(collection = "Skillprofile")
+@Document(collection = "FSESkillProfiles")
 public class SkillProfile implements Serializable {
 
 	private static final long serialVersionUID = 6220741624813720241L;
@@ -32,6 +32,8 @@ public class SkillProfile implements Serializable {
 	
 	private Date createdDate;
 	
+	private Date updatedDate;
+	
 	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList) {
 		this.associateId = associateId;
 		this.firstName = firstName;
@@ -42,12 +44,14 @@ public class SkillProfile implements Serializable {
 		this.softSkillsList = getExpertiseList(softSkillsList);
 	}
 	
-	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList, Date createdDate) {
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList, Date createdDate, Date updatedDate) {
 		this.associateId = associateId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.mobile = mobile;
+		this.createdDate = createdDate;
+		this.setUpdatedDate(updatedDate);
 		this.technicalSkillsList = getExpertiseList(technicalSkillsList);
 		this.softSkillsList = getExpertiseList(softSkillsList);
 		this.createdDate = createdDate;
@@ -108,6 +112,22 @@ public class SkillProfile implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
 
 	public List<Expertise> getTechnicalSkillsList() {
 		return technicalSkillsList;
@@ -123,14 +143,6 @@ public class SkillProfile implements Serializable {
 
 	public void setSoftSkillsList(List<Expertise> softSkillsList) {
 		this.softSkillsList = softSkillsList;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
 	}
 
 }
