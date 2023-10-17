@@ -13,17 +13,17 @@ import skilltracker.fse.service.SkillMQConsumer;
 @Service
 @Slf4j
 public class SkillMQConsumerImpl implements SkillMQConsumer {
-	
+
 	@Autowired
 	private SkillsRepository skillsRepository;
-	
-    @Value("${skill.queue}")
-    private String queueName;
-    
-    @JmsListener(destination = "${skill.queue}")
-    public void addProfile(EngineerSkillProfile newProfile) {
-    	System.out.println("newProfile from MQ = " + newProfile.toString());
+
+	@Value("${skill.queue}")
+	private String queueName;
+
+	@JmsListener(destination = "${skill.queue}")
+	public void addProfile(EngineerSkillProfile newProfile) {
+		System.out.println("newProfile from MQ = " + newProfile.toString());
 		this.skillsRepository.addProfile(newProfile);
-	}    
+	}
 
 }

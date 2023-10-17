@@ -26,15 +26,16 @@ public class SkillProfile implements Serializable {
 
 	private String email;
 
-    private List<Expertise> technicalSkillsList;
-	
+	private List<Expertise> technicalSkillsList;
+
 	private List<Expertise> softSkillsList;
-	
+
 	private Date createdDate;
-	
+
 	private Date updatedDate;
-	
-	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList) {
+
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile,
+			List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList) {
 		this.associateId = associateId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,8 +44,10 @@ public class SkillProfile implements Serializable {
 		this.technicalSkillsList = getExpertiseList(technicalSkillsList);
 		this.softSkillsList = getExpertiseList(softSkillsList);
 	}
-	
-	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile, List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList, Date createdDate, Date updatedDate) {
+
+	public SkillProfile(String firstName, String lastName, String associateId, String email, String mobile,
+			List<SkillsExpertise> technicalSkillsList, List<SkillsExpertise> softSkillsList, Date createdDate,
+			Date updatedDate) {
 		this.associateId = associateId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -56,7 +59,7 @@ public class SkillProfile implements Serializable {
 		this.softSkillsList = getExpertiseList(softSkillsList);
 		this.createdDate = createdDate;
 	}
-	
+
 	public SkillProfile() {
 	}
 
@@ -67,7 +70,7 @@ public class SkillProfile implements Serializable {
 		});
 		return expertiseList;
 	}
-	
+
 	private Expertise getExpertise(SkillsExpertise skillsExpertise) {
 		Expertise expertise = new Expertise(skillsExpertise.getSkillName(), skillsExpertise.getSkillExpertiseLevel());
 		return expertise;
@@ -112,7 +115,7 @@ public class SkillProfile implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}

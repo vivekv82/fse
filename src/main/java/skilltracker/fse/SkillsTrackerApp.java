@@ -7,7 +7,7 @@ import org.springframework.jms.annotation.EnableJms;
 @SpringBootApplication
 @EnableJms
 public class SkillsTrackerApp {
-    public static void main(String[] args) {
-        SpringApplication.run(SkillsTrackerApp.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SkillsTrackerApp.class, args);
+	}
 }

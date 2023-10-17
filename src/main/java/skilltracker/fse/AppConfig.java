@@ -7,14 +7,14 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 
 public class AppConfig {
-    DataSourceProperties dataSourceProperties;
+	DataSourceProperties dataSourceProperties;
 
-    DataSource realDataSource() {
-        DataSource dataSource = null;
-        return dataSource;
-    }
+	DataSource realDataSource() {
+		DataSource dataSource = null;
+		return dataSource;
+	}
 
-    DataSource dataSource() {
-        return new DataSourceSpy(realDataSource());
-    }
+	DataSource dataSource() {
+		return new DataSourceSpy(realDataSource());
+	}
 }
